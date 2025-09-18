@@ -19,66 +19,82 @@ A comprehensive full-stack web application for automated attendance tracking, re
 - Docker and Docker Compose
 - Git
 
-### Development Setup
+### Quick Start
 
-1. **Clone the repository**
-   \`\`\`bash
-   git clone <repository-url>
-   cd smart-attendance-app
-   \`\`\`
+#### **Prerequisites**
+- Node.js (v18 or higher)
+- Docker and Docker Compose
+- Git
 
-2. **Install dependencies**
-   \`\`\`bash
-   npm install
-   \`\`\`
+#### **Development Setup**
 
-3. **Set up environment variables**
-   \`\`\`bash
-   cp packages/server/.env.example packages/server/.env
-   # Edit the .env file with your configuration
-   \`\`\`
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd smart-attendance-app
+    ```
 
-4. **Start with Docker**
-   \`\`\`bash
-   npm run docker:up
-   \`\`\`
+2.  **Install dependencies:**
+    This command installs dependencies for all packages in the workspace.
+    ```bash
+    npm install
+    ```
 
-5. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-   - Database: localhost:5432
+3.  **Set up environment variables:**
+    Copy the example environment file for the server.
+    ```bash
+    cp packages/server/.env.example packages/server/.env
+    ```
+    Now, **edit the new `.env` file** in `packages/server/` with your database credentials and a JWT secret.
 
+4.  **Start the database and services:**
+    This command starts the PostgreSQL database, the backend, and the frontend containers.
+    ```bash
+    npm run docker:up
+    ```
+
+5.  **Run database migrations (Crucial Step):**
+    After the containers are running, open a **new terminal** and run the Prisma migrate command to set up your database schema.
+    ```bash
+    npm run prisma:migrate
+    ```
+
+6.  **Access the application:**
+    - **Frontend:** [http://localhost:3000](http://localhost:3000)
+    - **Backend API:** [http://localhost:5000](http://localhost:5000)
+
+---
 ### Development Commands
 
-\`\`\`bash
-# Start development servers
-npm run dev
+| Command              | Description                                             |
+| :------------------- | :------------------------------------------------------ |
+| `npm run dev`        | Starts the frontend and backend development servers.    |
+| `npm run build`      | Builds all packages for production.                     |
+| `npm run docker:up`  | Starts all services in detached mode via Docker Compose. |
+| `npm run docker:down`| Stops and removes all running containers.               |
+| `npm run docker:build`| Forces a rebuild of the Docker images.                  |
 
-# Build all packages
-npm run build
-
-# Docker commands
-npm run docker:up      # Start all services
-npm run docker:down    # Stop all services
-npm run docker:build   # Rebuild containers
-\`\`\`
-
-## Project Structure
-
-\`\`\`
+---
+### Project Structure
+```
 smart-attendance-app/
 ├── packages/
-│   ├── client/          # Next.js frontend
-│   │   ├── app/         # App router pages
-│   │   ├── components/  # React components
-│   │   └── lib/         # Utilities
-│   └── server/          # Express.js backend
-│       ├── src/         # TypeScript source
-│       ├── prisma/      # Database schema
-│       └── dist/        # Compiled JavaScript
-├── docker-compose.yml   # Container orchestration
-└── package.json         # Workspace configuration
-\`\`\`
+│   ├── client/           # Next.js Frontend
+│   │   ├── app/          # Next.js App Router
+│   │   ├── components/   # UI, feature, and layout components
+│   │   ├── lib/          # Helper functions, API client
+│   │   └── ...
+│   └── server/           # Express.js Backend
+│       ├── src/
+│       │   ├── controllers/
+│       │   ├── services/
+│       │   ├── routes/
+│       │   └── ...
+│       ├── prisma/       # Database Schema & Migrations
+│       └── ...
+├── docker-compose.yml    # Container Orchestration
+└── package.json          # NPM Workspace Configuration
+```
 
 ## Features
 
