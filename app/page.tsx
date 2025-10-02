@@ -11,7 +11,7 @@ export default function HomePage() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null)
 
   useEffect(() => {
-    // Set initial time on client mount to avoid hydration mismatch
+    // hydration error
     setCurrentTime(new Date())
     const timer = setInterval(() => setCurrentTime(new Date()), 1000)
     return () => clearInterval(timer)
