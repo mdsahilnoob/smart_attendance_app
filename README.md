@@ -30,7 +30,7 @@ A comprehensive full-stack web application for automated attendance tracking, re
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/mdsahilnoob/smart_attendance_app.git
     cd smart-attendance-app
     ```
 

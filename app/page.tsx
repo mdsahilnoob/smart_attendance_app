@@ -8,9 +8,11 @@ import { QrCode, Users, Calendar, BarChart3, BookOpen, Clock } from "lucide-reac
 import Link from "next/link"
 
 export default function HomePage() {
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
 
   useEffect(() => {
+    // Set initial time on client mount to avoid hydration mismatch
+    setCurrentTime(new Date())
     const timer = setInterval(() => setCurrentTime(new Date()), 1000)
     return () => clearInterval(timer)
   }, [])
@@ -60,7 +62,7 @@ export default function HomePage() {
             <div className="flex items-center space-x-2">
               <Badge variant="outline" className="flex items-center space-x-1">
                 <Clock className="w-3 h-3" />
-                <span>{currentTime.toLocaleTimeString()}</span>
+                <span>{currentTime ? currentTime.toLocaleTimeString() : '--:--:--'}</span>
               </Badge>
             </div>
           </div>
