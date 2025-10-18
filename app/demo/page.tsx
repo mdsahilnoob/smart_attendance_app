@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
+import { SimpleThemeToggle } from "@/components/ui/theme-toggle"
 import { 
   QrCode, 
   Users, 
@@ -118,6 +119,7 @@ export default function DemoPage() {
                 <Switch id="live-mode" checked={liveMode} onCheckedChange={setLiveMode} />
                 <Label htmlFor="live-mode" className="text-sm">Live Mode</Label>
               </div>
+              <SimpleThemeToggle />
               <Badge variant="outline" className="flex items-center space-x-1">
                 <Clock className="w-3 h-3" />
                 <span>{currentTime ? currentTime.toLocaleTimeString() : '--:--:--'}</span>

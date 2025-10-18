@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { SimpleThemeToggle } from "@/components/ui/theme-toggle"
 import { QrCode, Users, Calendar, BarChart3, BookOpen, Clock } from "lucide-react"
 import Link from "next/link"
 
@@ -60,6 +61,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              <SimpleThemeToggle />
               <Badge variant="outline" className="flex items-center space-x-1">
                 <Clock className="w-3 h-3" />
                 <span>{currentTime ? currentTime.toLocaleTimeString() : '--:--:--'}</span>
